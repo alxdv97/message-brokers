@@ -1,0 +1,10 @@
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+
+custom:
+  active-mq:
+    topic: activeTopic
+
+server:
+  port: 8083

@@ -1,0 +1,19 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: kafka-consumer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  activemq:
+    broker-url: tcp://localhost:61616
+
+server:
+  port: 8080
+
+custom:
+  rabbit:
+    queue: rabbitQueue
+  active-mq:
+    topic: activeTopic

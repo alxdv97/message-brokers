@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+#  Kafka
+  zookeeper:
+    image: confluent/zookeeper
+    container_name: zookeeper
+    expose:
+      - 2181
+  kafka:
+    image: confluent/kafka
+    container_name: kafka
+    expose:
+      - 9092
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPIC: "kafka-topic:1:1"
+#   RabbitMQ
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+#   ActiveMQ
+  activemq:
+    image: webcenter/activemq
+    container_name: activemq
+    ports:
+      - "61616:61616" # broker (admin:adminactivemq)(amq:amq)
+      - "8161:8161"   # web    http://boot2docker:8161/admin (admin:admin)
